@@ -1,13 +1,13 @@
-import { useState } from 'react';
+ import { useState } from 'react';
 import { Star, TrendingUp, TrendingDown, CircleDollarSign, BarChart, MoreHorizontal, ArrowUp, ArrowDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import StarBackground from '../components/StarBackground';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from "../components/ui/table.jsx";
 import BG from '../assets/BgInferno.svg';
 
-
-
 const Stocklist = () => {
+  const navigate = useNavigate();
   const [stocks, setStocks] = useState([
     {
       id: 1,
@@ -23,7 +23,7 @@ const Stocklist = () => {
       change7dUp: false,
       marketCap: "$218,533,780",
       volume: "$5,763,203,118",
-      chartData: "down", // "up" or "down" to determine chart color
+      chartData: "down",
     },
     {
       id: 2,
@@ -39,10 +39,10 @@ const Stocklist = () => {
       change7dUp: true,
       marketCap: "$23,621,421,545",
       volume: "$2,487,902,497",
-      chartData: "up", // "up" or "down" to determine chart color
+      chartData: "up",
     },
-    {
-      id: 3,
+    
+      {    id: 3,
       rank: 8,
       favorited: true,
       name: "SushiSwap",
@@ -145,6 +145,10 @@ const Stocklist = () => {
     ));
   };
 
+  const handleStockClick = (symbol) => {
+    navigate(`/stock/${symbol}`);
+  };
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-background"
     style={{ backgroundImage: `url(${BG})`, backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -179,10 +183,17 @@ const Stocklist = () => {
               </TableHeader>
               <TableBody>
                 {stocks.map((stock) => (
-                  <TableRow key={stock.id} className="border-gray-800 hover:bg-gray-900/50">
+                  <TableRow 
+                    key={stock.id} 
+                    className="border-gray-800 hover:bg-gray-900/50 cursor-pointer"
+                    onClick={() => handleStockClick(stock.symbol)}
+                  >
                     <TableCell className="flex items-center space-x-2">
                       <button 
-                        onClick={() => toggleFavorite(stock.id)}
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent row click when favoriting
+                          toggleFavorite(stock.id);
+                        }}
                         className="focus:outline-none"
                       >
                         <Star 
@@ -256,7 +267,12 @@ const Stocklist = () => {
                     </TableCell>
                     <TableCell>
                       <div className="flex justify-center space-x-1">
-                        <button className="p-1.5 rounded-md text-gray-400 hover:bg-gray-800 hover:text-white">
+                        <button 
+                          className="p-1.5 rounded-md text-gray-400 hover:bg-gray-800 hover:text-white"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent row click when clicking more options
+                          }}
+                        >
                           <MoreHorizontal className="h-4 w-4" />
                         </button>
                       </div>

@@ -41,9 +41,7 @@ const Landing = () => {
             }`}
           style={{ transitionDelay: '0.2s' }}
         >
-          {/* <Sparkles className="text-blue-400 mr-2 h-5 w-5" />
-          <span className="text-blue-100">New: Our Investment Inferno</span>
-          <div className="ml-3 h-1 w-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></div> */}
+       
         </div>
 
         {/* Main Headline */}
@@ -77,10 +75,7 @@ const Landing = () => {
             <ArrowRight className="text-blue-400 mr-2 h-5 w-5" />
             <span className="text-gray-400">Fast Trading</span>
           </div>
-          {/* <div className="flex items-center">
-            <Shield className="text-blue-400 mr-2 h-5 w-5" />
-            <span className="text-white">Secure & Reliable</span>
-          </div> */}
+         
           <div className="flex items-center">
             <BarChart className="text-blue-400 mr-2 h-5 w-5" />
             <span className="text-gray-400">Continuous Market Updates</span>
@@ -102,13 +97,7 @@ const Landing = () => {
             </span>
             Start Trading
           </Link>
-          {/* <Link
-            to="/demo"
-            className="bg-transparent border border-gray-700 hover:border-blue-500 text-white font-medium px-8 py-3 rounded-full button-hover-effect flex items-center"
-          >
-            <span className="mr-2">🎁</span>
-            Try Demo
-          </Link> */}
+  
         </div>
       </div>
     </div>
